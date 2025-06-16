@@ -1,0 +1,76 @@
+﻿<Window x:Class="PatientApplication.WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PatientApplication.WPF"
+        xmlns:views="clr-namespace:PatientApplication.WPF.Views"
+        xmlns:vms="clr-namespace:PatientApplication.WPF.ViewModels"
+        xmlns:state="clr-namespace:PatientApplication.WPF.State"
+        mc:Ignorable="d"
+        Title="MainWindow"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen"
+        Background="Transparent"
+        Height="450" 
+        Width="800">
+    <Viewbox>
+        <Grid Height="auto" Width="auto"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+
+            <Border Background="#10c9c9"
+                    BorderThickness="3"/>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="10*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="MainWindow" Grid.Column="0"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Center"
+                               Margin="3"/>
+
+                    <StackPanel Orientation="Horizontal"
+                                Grid.Column="1"
+                                Margin="3"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Right">
+                        <Button Content="minmize"
+                                Command="{Binding Minimize}"/>
+                        <Button Content="maximize"
+                                Command="{Binding Maximize}"/>
+                        <Button Content="close"
+                                Command="{Binding Close}"/>
+                    </StackPanel>                               
+
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Grid.Style>
+                        <Style TargetType="Grid">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsLoggedIn}" Value="False">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding IsLoggedOut}" Value="True">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Grid.Style>
+
+                    <views:NavBar/>
+                </Grid>
+
+                <ContentControl Content="{Binding CurrentViewModel}" Grid.Row="2"/>
+            </Grid>
+        </Grid>
+    </Viewbox>
+</Window>

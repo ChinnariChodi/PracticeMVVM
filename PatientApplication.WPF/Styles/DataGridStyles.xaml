@@ -1,0 +1,84 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style x:Key="CustomDataGridStyles1" TargetType="DataGrid">
+        <Setter Property="Background" Value="white" />
+        <Setter Property="Foreground" Value="#008080" />
+        <Setter Property="GridLinesVisibility" Value="Horizontal" />
+        <Setter Property="HeadersVisibility" Value="Column" />
+        <Setter Property="BorderBrush" Value="#0b70bd" />
+        <!-- Complementary border color -->
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="RowBackground" Value="#10497d" />
+        <!-- Slightly lighter shade of blue for rows -->
+        <Setter Property="AlternatingRowBackground" Value="#063050" />
+        <!-- Even darker shade for alternating rows -->
+        <Setter Property="HorizontalGridLinesBrush" Value="#0b70bd" />
+        <Setter Property="VerticalGridLinesBrush" Value="Transparent" />
+        <Setter Property="ColumnHeaderStyle" Value="{DynamicResource CustomDataGridColumnHeaderStyle}" />
+        <Setter Property="RowStyle" Value="{DynamicResource CustomDataGridRowStyle}"/>
+        <Setter Property="CellStyle" Value="{DynamicResource cellStyle}"/>
+    </Style>
+
+    <Style x:Key="CustomDataGridColumnHeaderStyle" TargetType="DataGridColumnHeader">
+        <Setter Property="Background" Value="#0b70bd" />
+        <!-- Blue that contrasts with the background -->
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <!--<Setter Property="Padding" Value="5,5,5,5" />-->
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <!--<Setter Property="BorderThickness" Value="0.5" />-->
+    </Style>
+
+    <Style x:Key="CustomDataGridRowStyle" TargetType="DataGridRow">
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <!--<Setter Property="Padding" Value="10,5" />-->
+        <!--<Setter Property="Margin" Value="5,2" />-->
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="#008080"/>
+        <Setter Property="BorderBrush" Value="#0b70bd"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <!--<Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect Color="#000000" Opacity="0.15" BlurRadius="8"/>
+            </Setter.Value>
+        </Setter>-->
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="DataGridRow">
+                    <Border x:Name="Border"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        SnapsToDevicePixels="True">
+                        <DataGridCellsPresenter />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter TargetName="Border" Property="Background" Value="{DynamicResource cs_selected}"/>
+                            <Setter Property="Foreground" Value="#008080"/>
+                            <Setter Property="Effect">
+                                <Setter.Value>
+                                    <DropShadowEffect Color="#000000" Opacity="0.3" BlurRadius="10"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Border" Property="Background" Value="{DynamicResource cs_selected}"/>
+                            <Setter Property="Foreground" Value="#5194e0"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="cellStyle" TargetType="DataGridCell">
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="BorderBrush" Value="#0b70bd"/>
+        <Setter Property="Padding" Value="5"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+    </Style>
+
+</ResourceDictionary>
